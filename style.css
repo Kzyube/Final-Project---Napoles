@@ -1175,3 +1175,78 @@ body.matrix-mode::after {
 @media (max-width: 768px) {
     .privacy-wrapper { grid-template-columns: 1fr; }
 }
+
+/* --- MOBILE RESPONSIVENESS PATCH --- */
+@media (max-width: 768px) {
+    
+    /* 1. Fix Navigation (Hamburger Menu) */
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        right: -100%; /* Hidden by default */
+        width: 80%;
+        height: 100vh;
+        background: rgba(0,0,0,0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+        transition: 0.3s ease;
+        border-left: 1px solid #333;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        right: 0; /* Slide in */
+    }
+
+    .mobile-menu-icon {
+        display: block !important; /* Show the ☰ icon */
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    /* 2. Fix Hero Text */
+    .hero-title { font-size: 2.5rem !important; }
+    .hero-subtitle { font-size: 1rem !important; padding: 0 20px; }
+    .stats-bar { flex-wrap: wrap; gap: 20px; }
+    .stat { width: 45%; border: none; } /* Stack stats 2x2 */
+    .separator { display: none; }
+
+    /* 3. Stack the Bento Grids */
+    .bento-grid {
+        grid-template-columns: 1fr !important; /* One column only */
+        grid-template-rows: auto !important;
+    }
+    .bento-item { min-height: 200px; }
+
+    /* 4. Fix the Laptop Visualizer */
+    .laptop-wrapper {
+        transform: scale(0.65); /* Shrink it to fit phone width */
+        margin-left: -17%; /* Center the shrunk element */
+        width: 135%; /* Compensate for scale */
+    }
+    .interface-controls { flex-wrap: wrap; }
+
+    /* 5. Fix Calculator & Privacy Switch */
+    .calc-content, 
+    .privacy-wrapper, 
+    .grid-2 {
+        grid-template-columns: 1fr !important; /* Stack vertically */
+    }
+    
+    .privacy-wrapper { padding: 20px; }
+
+    /* 6. Fix Code Comparison Slider */
+    .code-compare-container {
+        font-size: 0.7rem; /* Make code text smaller */
+    }
+
+    /* 7. Hide heavy 3D Globe interactions if needed */
+    .globe-overlay { flex-direction: column; gap: 10px; margin-top: 0; }
+    
+    /* 8. Fix Install Guide Tabs */
+    .guide-tabs { flex-direction: column; }
+    .guide-tab { border-bottom: 1px solid #333; }
+}

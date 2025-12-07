@@ -620,3 +620,28 @@ function denySpying(element) {
         element.style.background = "transparent";
     }, 400);
 }
+
+/* --- MOBILE MENU TOGGLE --- */
+const mobileBtn = document.querySelector('.mobile-menu-icon');
+const navLinks = document.querySelector('.nav-links');
+
+if(mobileBtn) {
+    mobileBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        
+        // Toggle icon between ☰ and ✕
+        if(navLinks.classList.contains('active')) {
+            mobileBtn.innerText = '✕';
+        } else {
+            mobileBtn.innerText = '☰';
+        }
+    });
+}
+
+// Close menu when a link is clicked
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        mobileBtn.innerText = '☰';
+    });
+});
