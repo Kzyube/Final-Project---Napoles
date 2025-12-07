@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Kzyube Napoles</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/novaLogo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ABOUT PAGE SPECIFIC CSS --- */
+        .about-hero {
+            padding: 120px 0 60px;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(99, 102, 241, 0.15), transparent 70%);
+        }
+
+        /* Developer Profile Card */
+        .dev-profile-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 80px;
+        }
+
+        .dev-card {
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .dev-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(90deg, var(--accent-primary), #ec4899);
+        }
+
+        .dev-avatar {
+            width: 120px;
+            height: 120px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .usm-badge {
+            background: #064e3b;
+            color: #34d399;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 5px 12px;
+            border-radius: 50px;
+            margin-bottom: 15px;
+            display: inline-block;
+            border: 1px solid #059669;
+        }
+
+        /* About Project Section */
+        .project-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 50px;
+            border-radius: 16px;
+            margin-bottom: 80px;
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: #111;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.2s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+        }
+
+        .c-icon {
+            width: 40px;
+            height: 40px;
+            background: #222;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-section { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">Nova<span class="accent-text">OS</span></a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>                
+                <a href="ecosystem.html">Ecosystem</a>
+                <a href="docs.html" class="btn btn-secondary">Docs</a>
+                <a href="index.html#download" class="btn btn-primary">Get Beta</a>
+            </div>
+            <div class="mobile-menu-icon">☰</div>
+        </nav>
+
+    <header class="container about-hero reveal">
+        <h1 style="font-size: 3.5rem; margin-bottom: 10px;">The <span class="gradient-text">Creator.</span></h1>
+        <p class="sub-heading">Meet the mind behind the architecture.</p>
+    </header>
+
+    <main class="container">
+
+        <section class="dev-profile-container reveal">
+            <div class="dev-card">
+                <div class="dev-avatar" style="overflow: hidden; padding: 0;">
+                    <img src="images/kzyube.png" alt="Kzyube Napoles" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                </div>
+                
+                <div class="usm-badge">UNIVERSITY OF SOUTHERN MINDANAO</div>
+                
+                <h2 style="margin: 0 0 5px 0;">Kzyube N. Napoles</h2>
+                <p style="color: var(--accent-secondary); font-weight: bold; margin-bottom: 20px;">Lead Developer & Architect</p>
+                
+                <p style="color: #ccc; line-height: 1.6; margin-bottom: 20px;">
+                    Currently a <strong>1 BSCS-A</strong> (Bachelor of Science in Computer Science) student. 
+                    Passionate about kernel development, systems programming, and pushing the boundaries of what web technologies can visualize.
+                </p>
+
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                    <span style="background:#222; padding:5px 10px; border-radius:4px; font-size:0.8rem;">HTML/CSS</span>
+                    <span style="background:#222; padding:5px 10px; border-radius:4px; font-size:0.8rem;">JavaScript</span>
+                    <span style="background:#222; padding:5px 10px; border-radius:4px; font-size:0.8rem;">Rust</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section reveal">
+            <div>
+                <h2>About <span class="accent-text">NovaOS</span></h2>
+                <p style="color: #aaa; line-height: 1.7; margin-top: 20px;">
+                    NovaOS started as an ambitious concept: <strong>"What if an operating system could think ahead?"</strong>
+                </p>
+                <p style="color: #aaa; line-height: 1.7; margin-top: 15px;">
+                    Built on the principles of a microkernel architecture, NovaOS separates core system functions from user drivers. This ensures that if a single component crashes, the entire system doesn't fail—it simply restarts the process in milliseconds.
+                </p>
+                <p style="color: #aaa; line-height: 1.7; margin-top: 15px;">
+                    This project represents the convergence of modern web aesthetics and system-level theory, designed to provide a glimpse into the future of computing interfaces.
+                </p>
+            </div>
+            <div>
+                <div class="glass-panel" style="height: 300px; display: flex; align-items: center; justify-content: center; position: relative;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 4rem; margin-bottom: 10px;">⚡</div>
+                        <h3>v1.4 Beta</h3>
+                        <p style="font-family:'JetBrains Mono'; font-size: 0.8rem; color: #666;">Codename: "Neural_Dawn"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal" style="margin-bottom: 100px;">
+            <div class="text-center">
+                <h2>Connect <span class="gradient-text">With Me</span></h2>
+                <p style="color: #666;">Open for collaboration and inquiries.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="c-icon">✉️</div>
+                    <div>
+                        <div style="font-size: 0.8rem; color: #666;">Email Address</div>
+                        <div style="font-family: 'JetBrains Mono'; font-size: 0.9rem;">s.knnapoles@usm.edu.ph</div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="c-icon">📘</div>
+                    <div>
+                        <div style="font-size: 0.8rem; color: #666;">Facebook</div>
+                        <div style="font-weight: bold;">Kzyube Napoles</div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="c-icon">📱</div>
+                    <div>
+                        <div style="font-size: 0.8rem; color: #666;">Mobile Number</div>
+                        <div style="font-family: 'JetBrains Mono'; font-size: 0.9rem;">0963 103 0280</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>Nova<span class="accent-text">OS</span></h3>
+                <p>The Future is Fluid.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <a href="index.html">Home</a>
+                <a href="ecosystem.html">Ecosystem</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+        <div class="container copyright">
+            &copy; 2025 Kzyube N. Napoles. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Simple scroll reveal script (Reused from main page)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

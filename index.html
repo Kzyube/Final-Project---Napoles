@@ -30,21 +30,22 @@
 
     <nav id="navbar">
         <div class="container nav-content">
-            <a href="#" class="logo">Nova<span class="accent-text">OS</span></a>
+            <a href="index.html" class="logo">Nova<span class="accent-text">OS</span></a>
+            
             <div class="nav-links">
-                <a href="#architecture">Architecture</a>
+                <a href="about.html">About</a>
                 <a href="ecosystem.html">Ecosystem</a>
-                <a href="#roadmap">Roadmap</a>
-                <a href="#download">Download</a>
+                
                 <a href="docs.html" class="btn btn-secondary">Docs</a>
                 <a href="#download" class="btn btn-primary">Get Beta</a>
-
+                
                 <div class="nav-monitor" title="RAM and CPU usage of this website">
                     <div class="mon-title">WEB STATS</div>
                     <div class="mon-row">CPU: <span id="nav-cpu" class="mon-val">1%</span></div>
                     <div class="mon-row">RAM: <span id="nav-ram" class="mon-val">12MB</span></div>
                 </div>
             </div>
+            
             <div class="mobile-menu-icon">☰</div>
         </div>
     </nav>
@@ -244,6 +245,144 @@
                 
                 <div id="priv-warning" class="priv-msg">
                     ⚠️ KERNEL ERROR: Surveillance modules not found.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding container reveal">
+        <div class="text-center" style="margin-bottom: 40px;">
+            <h2>Unbreakable <span class="destruct-text">Architecture.</span></h2>
+            <p class="sub-heading">See what happens when a graphics driver fails.</p>
+        </div>
+
+        <div class="crash-test-wrapper">
+            <div class="crash-controls">
+                <div class="console-header">SYSTEM STABILITY LAB</div>
+                <div class="test-grid" style="grid-template-columns: repeat(2, 1fr);"> <button class="test-btn" onclick="runTest('gpu')">
+                        <span class="t-icon">📺</span>
+                        <div class="t-text"><strong>Video Driver</strong><span>Simulate Segfault</span></div>
+                    </button>
+
+                    <button class="test-btn" onclick="runTest('audio')">
+                        <span class="t-icon">🔊</span>
+                        <div class="t-text"><strong>Audio Engine</strong><span>Simulate Overflow</span></div>
+                    </button>
+
+                    <button class="test-btn" onclick="runTest('net')">
+                        <span class="t-icon">🌐</span>
+                        <div class="t-text"><strong>Net Stack</strong><span>Packet Flood</span></div>
+                    </button>
+                    
+                    <button class="test-btn" onclick="runTest('virus')">
+                        <span class="t-icon">☣️</span>
+                        <div class="t-text">
+                            <strong>Live Virus</strong>
+                            <span style="color:#ff4444">Execute Malware</span>
+                        </div>
+                    </button>
+                </div>
+                
+                <div class="crash-logs" id="crash-console">> WAITING FOR INPUT...</div>
+            </div>
+
+            <div class="os-comparison">
+                <div class="os-screen" id="legacy-screen">
+                    <div class="os-header">Windows OS (Monolithic)</div>
+                    <div class="os-content legacy-bg">
+                        <div class="fake-window">
+                            <div class="fw-bar">Work_Project.docx</div>
+                            <div class="fw-body">
+                                <div class="fw-line" style="width:80%"></div>
+                                <div class="fw-line" style="width:60%"></div>
+                            </div>
+                        </div>
+                        <div class="fake-taskbar"></div>
+                        
+                        <div class="overlay-fail bsod" id="fail-bsod">
+                            <div class="sad-face">:(</div><p>Critical Process Died</p>
+                        </div>
+                        <div class="overlay-fail frozen" id="fail-frozen"></div>
+                        <div class="overlay-fail hang" id="fail-hang">
+                            <div class="spinner-death"></div>
+                        </div>
+                        
+                        <div class="overlay-fail hacked" id="fail-hacked">
+                            <div class="skull">☠️</div>
+                            <div class="hacked-msg">SYSTEM HACKED</div>
+                            <div class="ransom-text">All your files are encrypted.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="os-screen" id="nova-screen">
+                    <div class="os-header" style="color:var(--accent-primary)">NovaOS (Microkernel)</div>
+                    <div class="os-content nova-bg">
+                        <div class="glass-window" style="top:20%; left:20%; width:60%; height:50%;">
+                            <div class="window-bar"><div class="win-dots"><span></span><span></span><span></span></div><span class="win-title">Nova Player</span></div>
+                            <div class="win-body" style="display:flex; justify-content:center; align-items:center;">
+                                <div class="music-viz"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+                            </div>
+                        </div>
+                        <div class="os-dock"></div>
+
+                        <div class="big-shield" id="nova-big-shield">🛡️</div>
+
+                        <div class="recovery-toast" id="nova-toast">
+                            <div class="rt-icon">🛡️</div>
+                            <div>
+                                <div class="rt-title" id="rt-title">Threat Neutralized</div>
+                                <div class="rt-desc" id="rt-desc">Driver restarted in 4ms.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding container reveal">
+        <div class="handshake-wrapper">
+            <div class="scan-grid">
+                <div class="scan-text">
+                    <h2>Hardware <span class="accent-text">Handshake.</span></h2>
+                    <p class="sub-heading">NovaOS analyzes your current environment to calculate optimization potential.</p>
+                    
+                    <button class="btn btn-secondary" onclick="startHardwareScan()">
+                        Initiate Scan
+                    </button>
+                </div>
+
+                <div class="scan-visual">
+                    <div class="scanner-hud" id="scanner-box">
+                        <div class="scan-line"></div>
+                        <div class="scan-noise"></div>
+                        
+                        <div id="scan-idle" class="scan-status">
+                            <span class="blink">Waiting for uplink...</span>
+                        </div>
+
+                        <div id="scan-processing" class="scan-status" style="display:none;">
+                            <div class="code-stream">
+                                <span>> ANALYZING USER_AGENT...</span>
+                                <span>> CHECKING CONCURRENCY...</span>
+                                <span>> PROBING GPU ACCELERATION...</span>
+                                <span>> CALCULATING OPTIMIZATION...</span>
+                            </div>
+                        </div>
+
+                        <div id="scan-result" class="scan-status" style="display:none;">
+                            <div class="result-icon">✓</div>
+                            <h4 id="user-os">Detected: Windows 10</h4>
+                            <p id="user-browser" style="font-size: 0.8rem; color: #888; margin-bottom: 15px;">via Chrome 120</p>
+                            
+                            <div class="optimization-stat">
+                                <span>NovaOS Boost:</span>
+                                <span class="boost-val">+42%</span>
+                            </div>
+                            <p class="small-note">Your hardware is being throttled by your current kernel.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -645,3 +645,244 @@ document.querySelectorAll('.nav-links a').forEach(link => {
         mobileBtn.innerText = '☰';
     });
 });
+
+/* --- CRASH TEST LOGIC --- */
+function triggerCrash() {
+    const legacyScreen = document.getElementById('legacy-screen');
+    const bsod = document.getElementById('bsod');
+    const novaToast = document.getElementById('nova-toast');
+    
+    // 1. Reset State (in case clicked twice)
+    bsod.style.display = 'none';
+    novaToast.classList.remove('visible');
+    legacyScreen.classList.remove('glitch-active');
+    
+    // 2. Start Glitch Effect (The Crash)
+    legacyScreen.classList.add('glitch-active');
+    
+    // 3. LEGACY OS: Fails after 1 second
+    setTimeout(() => {
+        legacyScreen.classList.remove('glitch-active');
+        bsod.style.display = 'block'; // Show Blue Screen
+    }, 1000);
+
+    // 4. NOVA OS: Survives instantly
+    setTimeout(() => {
+        // Show success message
+        novaToast.classList.add('visible');
+        
+        // Hide it after 5 seconds
+        setTimeout(() => {
+            novaToast.classList.remove('visible');
+        }, 5000);
+    }, 1200);
+}
+
+/* --- MULTI-TEST CRASH LOGIC --- */
+function runTest(type) {
+    const legacyScreen = document.getElementById('legacy-screen');
+    const consoleLog = document.getElementById('crash-console');
+    const toast = document.getElementById('nova-toast');
+    const rtTitle = document.getElementById('rt-title');
+    const rtDesc = document.getElementById('rt-desc');
+
+    // 1. Reset Legacy Screen
+    document.getElementById('fail-bsod').style.display = 'none';
+    document.getElementById('fail-frozen').style.display = 'none';
+    document.getElementById('fail-hang').classList.remove('active');
+    legacyScreen.classList.remove('glitch-active');
+    
+    // 2. Hide Nova Toast
+    toast.classList.remove('visible');
+
+    // 3. LOGIC SWITCH
+    let logMsg = "";
+    let novaMsg = "";
+    let novaTitle = "";
+
+    if (type === 'gpu') {
+        logMsg = "> INJECTING: GPU_DRIVER_SEGFAULT...";
+        novaTitle = "Graphics Driver Restored";
+        novaMsg = "Display process restarted (4ms)";
+        
+        // Legacy Effect: Glitch then BSOD
+        legacyScreen.classList.add('glitch-active');
+        setTimeout(() => {
+            legacyScreen.classList.remove('glitch-active');
+            document.getElementById('fail-bsod').style.display = 'block';
+        }, 800);
+    } 
+    else if (type === 'audio') {
+        logMsg = "> INJECTING: AUDIO_BUFFER_OVERFLOW...";
+        novaTitle = "Audio Service Restored";
+        novaMsg = "Sound server restarted (2ms)";
+
+        // Legacy Effect: Freeze (Opacity)
+        setTimeout(() => {
+            document.getElementById('fail-frozen').style.display = 'block';
+        }, 500);
+    } 
+    else if (type === 'net') {
+        logMsg = "> INJECTING: NETWORK_PACKET_FLOOD...";
+        novaTitle = "Network Stack Isolated";
+        novaMsg = "Malicious packet dropped. Connection safe.";
+
+        // Legacy Effect: Application Hang
+        setTimeout(() => {
+            document.getElementById('fail-hang').classList.add('active');
+        }, 500);
+    }
+
+    // 4. Print Log
+    consoleLog.innerText = logMsg;
+
+    // 5. Nova Recovery (Always succeeds)
+    setTimeout(() => {
+        rtTitle.innerText = novaTitle;
+        rtDesc.innerText = novaMsg;
+        toast.classList.add('visible');
+        consoleLog.innerText = "> SYSTEM STATUS: NOVA_KERNEL_STABLE";
+        
+        // Hide Toast after 4s
+        setTimeout(() => {
+            toast.classList.remove('visible');
+        }, 4000);
+    }, 1200);
+}
+
+/* --- MULTI-TEST CRASH LOGIC (UPDATED) --- */
+function runTest(type) {
+    const legacyScreen = document.getElementById('legacy-screen');
+    const consoleLog = document.getElementById('crash-console');
+    const toast = document.getElementById('nova-toast');
+    const rtTitle = document.getElementById('rt-title');
+    const rtDesc = document.getElementById('rt-desc');
+    
+    // Reset All States
+    document.getElementById('fail-bsod').style.display = 'none';
+    document.getElementById('fail-frozen').style.display = 'none';
+    document.getElementById('fail-hang').classList.remove('active');
+    document.getElementById('fail-hacked').classList.remove('active');
+    document.getElementById('nova-big-shield').classList.remove('active');
+    legacyScreen.classList.remove('glitch-active');
+    toast.classList.remove('visible');
+
+    let logMsg = "";
+    let novaTitle = "";
+    let novaMsg = "";
+
+    // --- LOGIC SWITCH ---
+    if (type === 'virus') {
+        logMsg = "> EXEC: RANSOMWARE.EXE (SUDO)...";
+        novaTitle = "Malware Sandboxed";
+        novaMsg = "Virus isolated in temp container. System safe.";
+
+        // Windows: HACKED
+        setTimeout(() => {
+            document.getElementById('fail-hacked').classList.add('active');
+        }, 500);
+
+        // Nova: BIG SHIELD
+        setTimeout(() => {
+            const shield = document.getElementById('nova-big-shield');
+            shield.classList.add('active');
+            
+            // Remove shield after 1.5s
+            setTimeout(() => {
+                shield.classList.remove('active');
+            }, 1500);
+        }, 600);
+    } 
+    else if (type === 'gpu') {
+        logMsg = "> INJECTING: GPU_DRIVER_SEGFAULT...";
+        novaTitle = "Graphics Driver Restored";
+        novaMsg = "Display process restarted (4ms)";
+        legacyScreen.classList.add('glitch-active');
+        setTimeout(() => {
+            legacyScreen.classList.remove('glitch-active');
+            document.getElementById('fail-bsod').style.display = 'block';
+        }, 800);
+    } 
+    else if (type === 'audio') {
+        logMsg = "> INJECTING: AUDIO_BUFFER_OVERFLOW...";
+        novaTitle = "Audio Service Restored";
+        novaMsg = "Sound server restarted (2ms)";
+        setTimeout(() => { document.getElementById('fail-frozen').style.display = 'block'; }, 500);
+    } 
+    else if (type === 'net') {
+        logMsg = "> INJECTING: NETWORK_PACKET_FLOOD...";
+        novaTitle = "Network Stack Isolated";
+        novaMsg = "Malicious packet dropped. Connection safe.";
+        setTimeout(() => { document.getElementById('fail-hang').classList.add('active'); }, 500);
+    }
+
+    // Print Log
+    consoleLog.innerText = logMsg;
+
+    // Nova Toast Notification (Delay slightly)
+    setTimeout(() => {
+        // Don't show toast immediately if Shield is showing (for virus test)
+        let delay = (type === 'virus') ? 1600 : 0;
+        
+        setTimeout(() => {
+            rtTitle.innerText = novaTitle;
+            rtDesc.innerText = novaMsg;
+            toast.classList.add('visible');
+            consoleLog.innerText = "> SYSTEM STATUS: NOVA_KERNEL_STABLE";
+            
+            setTimeout(() => { toast.classList.remove('visible'); }, 4000);
+        }, delay);
+
+    }, 1200);
+}
+
+/* --- HARDWARE HANDSHAKE LOGIC --- */
+function startHardwareScan() {
+    const idleScreen = document.getElementById('scan-idle');
+    const procScreen = document.getElementById('scan-processing');
+    const resultScreen = document.getElementById('scan-result');
+    const box = document.getElementById('scanner-box');
+
+    // 1. Reset
+    idleScreen.style.display = 'none';
+    resultScreen.style.display = 'none';
+    procScreen.style.display = 'flex';
+    box.style.borderColor = "#22c55e"; // Turn border green
+
+    // 2. Detect User Info
+    const userAgent = navigator.userAgent;
+    let os = "Unknown OS";
+    let browser = "Unknown Browser";
+
+    // Simple OS Detection
+    if (userAgent.indexOf("Win") != -1) os = "Windows";
+    if (userAgent.indexOf("Mac") != -1) os = "macOS";
+    if (userAgent.indexOf("Linux") != -1) os = "Linux";
+    if (userAgent.indexOf("Android") != -1) os = "Android";
+    if (userAgent.indexOf("like Mac") != -1) os = "iOS";
+
+    // Simple Browser Detection
+    if (userAgent.indexOf("Chrome") != -1) browser = "Chrome (Google)";
+    else if (userAgent.indexOf("Safari") != -1) browser = "Safari";
+    else if (userAgent.indexOf("Firefox") != -1) browser = "Firefox";
+
+    // 3. Fake Processing Delay (2 seconds)
+    setTimeout(() => {
+        procScreen.style.display = 'none';
+        resultScreen.style.display = 'block';
+
+        // 4. Update Text
+        document.getElementById('user-os').innerText = "Detected: " + os;
+        document.getElementById('user-browser').innerText = "Running on " + browser;
+        
+        // 5. Calculate Fake Boost based on OS
+        // Windows/Mac get high boosts (implying they are slow). Linux gets lower (implying it's already fast).
+        let boost = "35%";
+        if(os === "Windows") boost = "42%";
+        if(os === "macOS") boost = "38%";
+        if(os === "Linux") boost = "12%"; // Linux is already efficient
+        
+        document.querySelector('.boost-val').innerText = "+" + boost;
+
+    }, 2000);
+}
