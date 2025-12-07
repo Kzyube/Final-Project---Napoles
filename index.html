@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaOS | The Neural Era of Computing</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/novaLogo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="boot-layer">
+        <div class="boot-log"></div>
+        <div class="boot-progress-wrap">
+            <div class="boot-progress-bar"></div>
+        </div>
+    </div>
+
+    <div class="theme-panel">
+        <div class="theme-menu">
+            <div class="color-dot" style="background: #6366f1;" data-color="#6366f1" data-glow="rgba(99, 102, 241, 0.5)"></div>
+            <div class="color-dot" style="background: #ec4899;" data-color="#ec4899" data-glow="rgba(236, 72, 153, 0.5)"></div>
+            <div class="color-dot" style="background: #22c55e;" data-color="#22c55e" data-glow="rgba(34, 197, 94, 0.5)"></div>
+        </div>
+        <div class="theme-toggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </div>
+    </div>
+
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">Nova<span class="accent-text">OS</span></a>
+            <div class="nav-links">
+                <a href="#architecture">Architecture</a>
+                <a href="ecosystem.html">Ecosystem</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="#download">Download</a>
+                <a href="docs.html" class="btn btn-secondary">Docs</a>
+                <a href="#download" class="btn btn-primary">Get Beta</a>
+
+                <div class="nav-monitor" title="RAM and CPU usage of this website">
+                    <div class="mon-title">WEB STATS</div>
+                    <div class="mon-row">CPU: <span id="nav-cpu" class="mon-val">1%</span></div>
+                    <div class="mon-row">RAM: <span id="nav-ram" class="mon-val">12MB</span></div>
+                </div>
+            </div>
+            <div class="mobile-menu-icon">☰</div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="grid-overlay"></div>
+        
+        <div class="container text-center reveal">
+            <div class="badge">v1.4 Now Available</div>
+            <h1 class="hero-title">The Operating System<br> <span class="gradient-text">That Thinks.</span></h1>
+            <p class="hero-subtitle">
+                Rewrite the rules of latency. NovaOS utilizes a <strong>predictive neural microkernel</strong> to preload assets before you request them.
+            </p>
+            <div class="hero-btns">
+                <a href="#download" class="btn btn-primary">Get NovaOS</a>
+                <a href="#terminal-demo" class="btn btn-secondary">Try CLI Demo</a>
+            </div>
+            
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-num">0.4s</span>
+                    <span class="stat-label">Boot Time</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">12MB</span>
+                    <span class="stat-label">Idle RAM</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-label">POSIX</span>
+                </div>
+                <div class="stat separator"></div>
+                <div class="stat">
+                    <span class="stat-num">2 Core</span>
+                    <span class="stat-label">Min CPU</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">4 GB</span>
+                    <span class="stat-label">Min RAM</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">15 GB</span>
+                    <span class="stat-label">Storage</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span class="brand">VS Code</span><span class="brand">Docker</span><span class="brand">Figma</span>
+            <span class="brand">Spotify</span><span class="brand">Blender</span><span class="brand">Chrome</span>
+            <span class="brand">Python</span><span class="brand">Rust</span><span class="brand">Discord</span>
+            <span class="brand">Slack</span><span class="brand">Steam</span><span class="brand">VS Code</span>
+            <span class="brand">Docker</span><span class="brand">Figma</span><span class="brand">Spotify</span>
+        </div>
+    </div>
+
+    <section id="architecture" class="section-padding container">
+        <div class="text-center reveal">
+            <h2>Engineered for <span class="accent-text">Perfection.</span></h2>
+            <p class="sub-heading">We didn't just fork Linux. We started over.</p>
+        </div>
+
+        <div class="bento-grid">
+            <div class="glass-panel bento-item bento-large reveal">
+                <div class="icon-box">⚡</div>
+                <h3>The HyperKernel</h3>
+                <p>A true microkernel design. Drivers run in user-space, meaning a graphic driver crash will restart in 4ms without freezing your screen.</p>
+            </div>
+            
+            <div class="glass-panel bento-item reveal">
+                <div class="icon-box">🛡️</div>
+                <h3>Memory Safe</h3>
+                <p>Written entirely in Rust. Buffer overflows are mathematically impossible.</p>
+            </div>
+            
+            <div class="glass-panel bento-item reveal">
+                <div class="icon-box">🔮</div>
+                <h3>AI Scheduling</h3>
+                <p>The OS learns your habits. Compiling code? It dedicates cores automatically.</p>
+            </div>
+            
+            <div class="glass-panel bento-item bento-tall reveal">
+                <div class="icon-box">🌐</div>
+                <h3>Global File System</h3>
+                <p>Storage is decoupled from hardware. Access your drive from any trusted Nova node instantly via encrypted P2P tunneling.</p>
+                <div class="update-visual">
+                    <div class="bar-loading"></div>
+                </div>
+                <p class="tiny-text">Sync Status: Active • 12ms Latency</p>
+            </div>
+
+            <div class="glass-panel bento-item reveal">
+                <div class="icon-box">🎮</div>
+                <h3>Proton Native</h3>
+                <p>Run Windows apps (.exe) with near-native performance using our built-in compatibility layer.</p>
+            </div>
+
+             <div class="glass-panel bento-item reveal">
+                <div class="icon-box">⏰</div>
+                <h3>Instant Wake</h3>
+                <p>S3 Sleep State restoration in under 200ms. Open the lid, and you are online.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding container reveal">
+        <div class="text-center" style="margin-bottom: 40px;">
+            <h2>Safety in <span class="accent-text">Syntax.</span></h2>
+            <p class="sub-heading">Why we chose Rust. Drag to compare legacy kernels vs. NovaOS.</p>
+        </div>
+
+        <div class="code-compare-wrapper">
+            <div class="code-compare-container" id="compare-box">
+                
+                <div class="code-layer layer-rust">
+                    <div class="code-label label-rust">NovaOS Kernel (Rust)</div>
+                    <pre><code>
+<span class="cc-k">fn</span> <span class="cc-f">process_network_packet</span>(data: &<span class="cc-t">Vec</span>&lt;u8&gt;) {
+    <span class="cc-c">// SAFETY: Bounds checking is automatic</span>
+    <span class="cc-k">if let</span> <span class="cc-v">Some</span>(byte) = data.get(<span class="cc-n">1024</span>) {
+        <span class="cc-f">process</span>(byte);
+    } <span class="cc-k">else</span> {
+        <span class="cc-m">eprintln!</span>(<span class="cc-s">"Packet too small!"</span>);
+        <span class="cc-k">return</span>;
+    }
+    <span class="cc-c">// Memory is freed automatically here</span>
+}
+                    </code></pre>
+                </div>
+
+                <div class="code-layer layer-cpp" id="cpp-layer">
+                    <div class="code-label label-cpp">Legacy Kernel (C++)</div>
+                    <pre><code>
+<span class="cc-k">void</span> <span class="cc-f">process_network_packet</span>(<span class="cc-k">char</span>* data) {
+    <span class="cc-c">// DANGER: No bounds checking</span>
+    <span class="cc-k">char</span> byte = data[<span class="cc-n">1024</span>]; <span class="cc-e">// &lt;-- BUFFER OVERFLOW</span>
+    
+    <span class="cc-f">process</span>(byte);
+
+    <span class="cc-c">// MEMORY LEAK: Forgot to delete[] data</span>
+    <span class="cc-c">// System crash imminent...</span>
+    <span class="cc-e">SEGMENTATION FAULT (CORE DUMPED)</span>
+}
+                    </code></pre>
+                </div>
+
+                <div class="compare-slider" id="compare-handle">
+                    <div class="slider-knob">⇄</div>
+                </div>
+
+                <input type="range" min="0" max="100" value="50" class="compare-range" id="compare-input" oninput="moveSlider(this.value)">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding container reveal">
+        <div class="privacy-wrapper">
+            <div class="privacy-text">
+                <h2>Total <span class="destruct-text">Sovereignty.</span></h2>
+                <p>NovaOS is hard-coded to reject surveillance. Some settings cannot be changed—even by you.</p>
+            </div>
+
+            <div class="privacy-panel">
+                <div class="priv-row" onclick="denySpying(this)">
+                    <div class="priv-info">
+                        <span class="p-icon">👁️</span>
+                        <span>Telemetry & User Tracking</span>
+                    </div>
+                    <div class="priv-toggle-track">
+                        <div class="priv-toggle-thumb"></div>
+                    </div>
+                </div>
+
+                <div class="priv-row" onclick="denySpying(this)">
+                    <div class="priv-info">
+                        <span class="p-icon">🎯</span>
+                        <span>Targeted Advertising ID</span>
+                    </div>
+                    <div class="priv-toggle-track">
+                        <div class="priv-toggle-thumb"></div>
+                    </div>
+                </div>
+
+                <div class="priv-row" onclick="denySpying(this)">
+                    <div class="priv-info">
+                        <span class="p-icon">⌨️</span>
+                        <span>Keystroke Logging</span>
+                    </div>
+                    <div class="priv-toggle-track">
+                        <div class="priv-toggle-thumb"></div>
+                    </div>
+                </div>
+                
+                <div id="priv-warning" class="priv-msg">
+                    ⚠️ KERNEL ERROR: Surveillance modules not found.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="interface" class="section-padding container reveal">
+        <div class="text-center" style="margin-bottom: 40px;">
+            <h2>Beauty in <span class="gradient-text">Glass.</span></h2>
+            <p class="sub-heading">A UI designed to disappear. Focus on your flow.</p>
+        </div>
+
+        <div class="interface-controls">
+            <button class="ui-btn active" onclick="setScreen('desktop')">Desktop</button>
+            <button class="ui-btn" onclick="setScreen('dev')">Workstation</button>
+            <button class="ui-btn" onclick="setScreen('settings')">Control Center</button>
+        </div>
+
+        <div class="laptop-wrapper">
+            <div class="laptop-screen">
+                <div class="camera-dot"></div>
+                
+                <div id="screen-desktop" class="screen-content active">
+                    <div class="wallpaper-bg"></div>
+                    
+                    <div class="glass-window" style="top: 15%; left: 15%; width: 55%; height: 65%;">
+                        <div class="window-bar">
+                            <div class="win-dots"><span></span><span></span><span></span></div>
+                            <span class="win-title">Nova Files</span>
+                            <div style="margin-left:auto; font-size:10px; color:rgba(255,255,255,0.4);">/home/user/</div>
+                        </div>
+                        
+                        <div class="win-body file-manager-layout">
+                            <div class="fm-sidebar">
+                                <div class="fm-nav-item active">🏠 Home</div>
+                                <div class="fm-nav-item">☁️ Mesh Drive</div>
+                                <div class="fm-nav-item">⬇️ Downloads</div>
+                                <div class="fm-nav-item">🛠️ Projects</div>
+                                <div class="fm-nav-item">🗑️ Trash</div>
+                            </div>
+                            
+                            <div class="fm-content">
+                                <div class="fm-file">
+                                    <div class="f-icon folder">📁</div>
+                                    <span class="f-name">Documents</span>
+                                </div>
+                                <div class="fm-file">
+                                    <div class="f-icon folder">📁</div>
+                                    <span class="f-name">Images</span>
+                                </div>
+                                <div class="fm-file">
+                                    <div class="f-icon rust">🦀</div>
+                                    <span class="f-name">main.rs</span>
+                                </div>
+                                <div class="fm-file">
+                                    <div class="f-icon img">🖼️</div>
+                                    <span class="f-name">mockup.png</span>
+                                </div>
+                                <div class="fm-file">
+                                    <div class="f-icon code">📄</div>
+                                    <span class="f-name">todo.md</span>
+                                </div>
+                                <div class="fm-file">
+                                    <div class="f-icon zip">📦</div>
+                                    <span class="f-name">backup.tar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-widget" style="top: 15%; right: 8%;">
+                        <div class="weather-sun"></div>
+                        <div style="font-size: 2rem; font-weight: bold;">72°</div>
+                        <div style="font-size: 0.8rem; opacity: 0.7;">San Francisco</div>
+                    </div>
+                </div>
+
+                <div id="screen-dev" class="screen-content">
+                    <div class="wallpaper-bg" style="background: #1e1e1e;"></div>
+                    <div class="glass-window full-mode">
+                        <div class="window-bar">
+                            <div class="win-dots"><span></span><span></span><span></span></div>
+                            <span class="win-title">main.rs - NovaStudio</span>
+                        </div>
+                        <div class="win-body code-layout">
+                            <div class="code-line"><span class="c-k">fn</span> <span class="c-f">init_kernel</span>() {</div>
+                            <div class="code-line indent"><span class="c-c">// Neural Engine Start</span></div>
+                            <div class="code-line indent"><span class="c-v">let</span> core = <span class="c-t">System</span>::boot();</div>
+                            <div class="code-line indent">console.log(<span class="c-s">"Ready."</span>);</div>
+                            <div class="code-line">}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="screen-settings" class="screen-content">
+                    <div class="wallpaper-bg blur-bg"></div>
+                    <div class="glass-window center-mode">
+                        <div class="settings-grid">
+                            <div class="set-item active">
+                                <div class="set-icon">📡</div>
+                                <span>Network</span>
+                                <div class="toggle-switch on"></div>
+                            </div>
+                            <div class="set-item">
+                                <div class="set-icon">🎨</div>
+                                <span>Theme</span>
+                                <div class="color-picker"></div>
+                            </div>
+                            <div class="set-item">
+                                <div class="set-icon">🛡️</div>
+                                <span>Privacy</span>
+                                <span style="font-size:0.7rem; color:#4cd964;">Protected</span>
+                            </div>
+                            <div class="set-item">
+                                <div class="set-icon">🌙</div>
+                                <span>Dark Mode</span>
+                                <div class="toggle-switch on"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="os-dock">
+                    <div class="dock-icon"></div>
+                    <div class="dock-icon"></div>
+                    <div class="dock-icon active"></div>
+                    <div class="dock-icon"></div>
+                    <div class="dock-icon"></div>
+                </div>
+
+            </div>
+            <div class="laptop-base"></div>
+        </div>
+    </section>
+
+    <section class="section-padding container reveal" style="position: relative; overflow: hidden;">
+        <div class="text-center" style="margin-bottom: 20px;">
+            <h2>Global <span class="gradient-text">Active Users.</span></h2>
+            <p class="sub-heading">Live activity from 842,109 active users.</p>
+        </div>
+
+        <div id="globe-container"></div>
+        
+        <div class="globe-overlay">
+            <div class="g-stat">
+                <span class="g-dot"></span>
+                <span>San Francisco: <strong>42k</strong></span>
+            </div>
+            <div class="g-stat">
+                <span class="g-dot"></span>
+                <span>Tokyo: <strong>28k</strong></span>
+            </div>
+            <div class="g-stat">
+                <span class="g-dot"></span>
+                <span>Berlin: <strong>19k</strong></span>
+            </div>
+        </div>
+    </section>
+
+   <section class="section-padding container reveal">
+        <div class="calculator-panel">
+            <div class="calc-content">
+                <div class="calc-inputs">
+                    <h3>Reclaim Your <span class="accent-text">Hardware.</span></h3>
+                    <p style="color:var(--text-muted); margin-bottom: 25px;">See how much performance NovaOS recovers based on your specs.</p>
+                    
+                    <div class="input-group">
+                        <label>Current Operating System</label>
+                        <div class="os-selector">
+                            <button class="os-btn active" onclick="selectOS('win11')">Windows 11</button>
+                            <button class="os-btn" onclick="selectOS('win10')">Windows 10</button>
+                            <button class="os-btn" onclick="selectOS('mac')">macOS</button>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Your Total RAM: <span id="ram-display" style="color:white; font-family:'JetBrains Mono'">16 GB</span></label>
+                        <input type="range" min="8" max="64" step="4" value="16" class="nova-slider" id="ram-slider" oninput="updateSliderLabel(this.value)">
+                        <div class="slider-labels">
+                            <span>8GB</span>
+                            <span>32GB</span>
+                            <span>64GB</span>
+                        </div>
+                    </div>
+
+                    <button class="calc-btn" onclick="calculateSavings()">
+                        <span>⚡</span> Calculate Savings
+                    </button>
+                </div>
+
+                <div class="calc-results" id="results-panel" style="opacity: 0.5; filter: blur(2px); transition: all 0.5s;">
+                    <div class="result-card">
+                        <div class="res-icon">🧠</div>
+                        <div class="res-data">
+                            <span class="res-num" id="res-ram">-- GB</span>
+                            <span class="res-label">RAM Reclaimed</span>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="res-icon">💾</div>
+                        <div class="res-data">
+                            <span class="res-num" id="res-storage">-- GB</span>
+                            <span class="res-label">Storage Saved</span>
+                        </div>
+                    </div>
+
+                    <div class="result-card highlight">
+                        <div class="res-icon">🚀</div>
+                        <div class="res-data">
+                            <span class="res-num" id="res-perf">--%</span>
+                            <span class="res-label">Efficiency Boost</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section id="download" class="section-padding" style="background: var(--bg-secondary);">
+        <div class="container reveal">
+            <div class="text-center">
+                <h2>Build Your <span class="accent-text">Installer</span></h2>
+                <p style="color:var(--text-muted)">Select your preferences below.</p>
+            </div>
+
+            <div class="config-grid">
+                <div>
+                    <h3 style="margin-bottom:1rem;">1. Select Edition</h3>
+                    <div class="option-card selected" data-type="edition" data-value="Home">
+                        <div class="check-circle"></div>
+                        <h4>Nova Home</h4>
+                        <p style="font-size:0.8rem; color:#888;">For daily use, browsing, and media.</p>
+                    </div>
+                    <div class="option-card" style="margin-top:10px;" data-type="edition" data-value="Pro">
+                        <div class="check-circle"></div>
+                        <h4>Nova Pro</h4>
+                        <p style="font-size:0.8rem; color:#888;">Pre-installed dev tools, Docker, and KVM.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="margin-bottom:1rem;">2. Architecture</h3>
+                    <div class="option-card selected" data-type="arch" data-value="x86_64">
+                        <div class="check-circle"></div>
+                        <h4>Intel / AMD (64-bit)</h4>
+                        <p style="font-size:0.8rem; color:#888;">Standard PC & Laptop processors.</p>
+                    </div>
+                    <div class="option-card" style="margin-top:10px;" data-type="arch" data-value="ARM64">
+                        <div class="check-circle"></div>
+                        <h4>Apple Silicon / ARM</h4>
+                        <p style="font-size:0.8rem; color:#888;">M1/M2/M3 Macs & Raspberry Pi 5.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 3rem;">
+                <p id="download-size" style="margin-bottom:1rem; color:var(--text-muted); font-family:var(--font-mono);">Estimated Size: 1.2 GB • ISO Image</p>
+                
+                <a id="final-download-btn" href="downloadOS/Nova18OS.ISO" download class="btn btn-accent" style="padding: 1rem 3rem; font-size:1.1rem;">
+                    Download NovaOS Home (x86_64)
+                </a>
+                
+                <p style="margin-top: 1rem; font-size: 0.8rem; color: #555;">SHA256: 8f4b...2a1c • <a href="#" style="text-decoration: underline;">Verify Signature</a></p>
+            </div>
+        </div>
+
+        <div class="compatibility-container reveal">
+                <div id="comp-initial">
+                    <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">Not sure if NovaOS runs on your hardware?</p>
+                    <button class="btn btn-secondary" onclick="runFakeScan()">
+                        <span style="margin-right:8px">⚡</span> Check Compatibility
+                    </button>
+                </div>
+
+                <div id="comp-loading" style="display: none;">
+                    <div class="scan-spinner"></div>
+                    <p id="scan-status" style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent-text); margin-top: 15px;">INITIALIZING SCAN...</p>
+                </div>
+
+                <div id="comp-success" style="display: none;">
+                    <div style="font-size: 2rem; color: #22c55e; margin-bottom: 10px;">✓</div>
+                    <h4 style="margin: 0;">System Compatible</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Your hardware is optimized for NovaOS.</p>
+                </div>
+            </div>
+    </section>
+
+    <section id="terminal-demo" class="section-padding" style="background: var(--bg-color);">
+        <div class="container">
+            <div class="split-layout">
+                <div class="reveal">
+                    <h2>The Power of <span class="gradient-text">CLI.</span></h2>
+                    <p>NovaOS includes `zsh` and `fish` out of the box. Try the interactive demo on the right.</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem;">
+                        Try typing: <br>
+                        <code class="inline-code">help</code> 
+                        <code class="inline-code">neofetch</code> 
+                        <code class="inline-code">date</code>
+                        <code class="inline-code">whoami</code>
+                    </p>
+                </div>
+                
+                <div class="terminal-window reveal" onclick="document.getElementById('term-input').focus()">
+                    <div class="term-header">
+                        <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        <span class="term-title">user@nova-os:~</span>
+                    </div>
+                    <div class="term-body" id="term-body">
+                        <div class="term-line">Welcome to NovaOS v1.4 [LTS]</div>
+                        <div class="term-line">Kernel: 5.14-nova-rust (x86_64)</div>
+                        <div class="term-line">Type 'help' to see available commands.</div>
+                        <br>
+                    </div>
+                    <div class="input-line">
+                        <span class="prompt">➜  ~</span>
+                        <input type="text" id="term-input" autocomplete="off" spellcheck="false">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap" class="section-padding container">
+        <div class="text-center reveal">
+            <h2>The <span class="accent-text">Journey</span></h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2023 Q4</div>
+                <div class="timeline-content">
+                    <h3>Project Ignition</h3>
+                    <p>Initial kernel bootstrapping and proof of concept.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-dot active"></div>
+                <div class="timeline-date">Now</div>
+                <div class="timeline-content">
+                    <h3>Beta 1.4</h3>
+                    <p>Full GUI environment (Glass). GPU Acceleration. WiFi 6 Support.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2025 Q4</div>
+                <div class="timeline-content">
+                    <h3>NovaOS 2.0</h3>
+                    <p>Android App Compatibility Layer & AR Desktop Mode.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section-padding container">
+        <div class="text-center reveal">
+            <h2>Frequently Asked <span class="gradient-text">Questions</span></h2>
+        </div>
+        <div class="faq-container reveal">
+            <div class="faq-item">
+                <div class="faq-question">Is it based on Linux? <span class="toggle">+</span></div>
+                <div class="faq-answer">NovaOS is POSIX compliant, meaning it understands Linux commands, but the kernel is built from scratch in Rust for better performance and security.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I run Steam games? <span class="toggle">+</span></div>
+                <div class="faq-answer">Yes! We use a translation layer similar to Proton, but baked into the kernel. Performance is often 10-15% higher than Windows.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>Nova<span class="accent-text">OS</span></h3>
+                <p>The Future is Fluid.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="#">Download</a>
+                <a href="#">Source Code</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="email@address.com">
+                    <button class="btn btn-primary">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="container copyright">
+            &copy; 2025 NovaOS Foundation. Made with coffee & Rust.
+        </div>
+    </footer>
+       <button id="uplink-btn" class="uplink-hud" onclick="engageUplink()">
+        <span class="hud-line"></span>
+        <span class="uplink-text">▲ SYSTEM UPLINK</span>
+        <span class="hud-line"></span>
+    </button>
+
+    <div id="hacker-overlay" class="hacker-overlay">
+        <div class="hacker-msg">
+            <h1 class="glitch-text">ROOT ACCESS GRANTED</h1>
+            <p>SYSTEM OVERRIDE: KZYUBE PROTOCOL INITIATED</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

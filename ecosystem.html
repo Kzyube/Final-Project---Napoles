@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaOS Ecosystem | The Neural Fabric</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- PAGE SPECIFIC STYLES --- */
+        /* These are specific to ecosystem.html but fit your theme */
+        
+        /* 1. HERO SECTION */
+        .eco-hero {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+        }
+
+        /* 2. TAB NAVIGATION (Sticky) */
+        .sticky-nav {
+            position: sticky;
+            top: 20px; /* Floats slightly below top */
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
+            pointer-events: none; /* Let clicks pass through around buttons */
+        }
+        
+        .nav-pill-container {
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px;
+            border-radius: 50px;
+            display: flex;
+            gap: 5px;
+            pointer-events: auto; /* Re-enable clicks */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .nav-pill {
+            padding: 10px 25px;
+            border-radius: 30px;
+            border: none;
+            background: transparent;
+            color: #888;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pill.active {
+            background: var(--accent-primary, #6366f1);
+            color: white;
+            box-shadow: 0 4px 15px var(--accent-glow, rgba(99,102,241,0.4));
+        }
+
+        /* 3. GRID LAYOUTS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 100px;
+            align-items: center;
+        }
+
+        /* 4. VISUALIZATION: THE NEURAL MESH */
+        .mesh-container {
+            height: 400px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .mesh-node {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .mesh-line {
+            position: absolute;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            transform-origin: 0 0;
+            z-index: 1;
+        }
+
+        .node-label {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'JetBrains Mono';
+            font-size: 0.7rem;
+            color: var(--accent-secondary);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        
+        .mesh-node:hover .node-label { opacity: 1; }
+        .mesh-node:hover { box-shadow: 0 0 15px white; }
+
+        /* 5. APP STORE CARDS */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .app-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            transition: transform 0.2s, background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.06);
+            border-color: var(--accent-primary);
+        }
+
+        .app-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: #222;
+        }
+
+        /* 6. DEV DOCS */
+        .code-block {
+            background: #0f0f0f;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--accent-primary);
+            color: #d4d4d8;
+        }
+
+        .keyword { color: #c084fc; }
+        .string { color: #4ade80; }
+        .function { color: #60a5fa; }
+        .comment { color: #52525b; }
+
+        /* 7. STATS BANNER */
+        .stats-banner {
+            display: flex;
+            justify-content: space-around;
+            background: var(--bg-secondary);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+        }
+        .stat-box h3 { font-size: 2.5rem; margin: 0; color: var(--accent-primary); }
+        .stat-box p { color: #888; margin: 0; }
+
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">Nova<span class="accent-text">OS</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#" class="active">Ecosystem</a>
+                <a href="docs.html" class="btn btn-secondary">Docs</a>
+                <a href="index.html#download" class="btn btn-primary">Get Beta</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container eco-hero reveal">
+        <h1>The Connected <span class="gradient-text">Universe</span></h1>
+        <p class="sub-heading" style="max-width: 600px; margin: 20px auto;">
+            NovaOS is more than a kernel. It is a unified platform for developers, creators, and daily users. 
+            Explore the tools that make the Neural Era possible.
+        </p>
+    </header>
+
+    <div class="sticky-nav reveal">
+        <div class="nav-pill-container">
+            <button class="nav-pill active" onclick="scrollToSection('mesh')">Neural Mesh</button>
+            <button class="nav-pill" onclick="scrollToSection('store')">NovaPM Store</button>
+            <button class="nav-pill" onclick="scrollToSection('devs')">Developer Hub</button>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <section id="mesh" class="reveal" style="scroll-margin-top: 100px;">
+            <div class="grid-2">
+                <div>
+                    <h2><span class="accent-text">Neural Mesh</span> Sync</h2>
+                    <p style="color: #aaa; line-height: 1.6;">
+                        Traditional cloud storage is slow. NovaMesh creates a secure, peer-to-peer tunnel between your devices.
+                        <br><br>
+                        Edit a file on your desktop, and the changes appear in your customized RAM buffer on your laptop instantly.
+                        No central server. No data mining. Just pure, encrypted speed.
+                    </p>
+                    <ul style="margin-top: 20px; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px;">⚡ <strong>Zero Latency:</strong> Local transfer speeds up to 10Gbps.</li>
+                        <li style="margin-bottom: 10px;">🔒 <strong>E2E Encryption:</strong> AES-256 standard.</li>
+                        <li style="margin-bottom: 10px;">📡 <strong>Offline Mode:</strong> Queues changes until connection is restored.</li>
+                    </ul>
+                </div>
+                
+                <div class="mesh-container" id="mesh-canvas">
+                    </div>
+            </div>
+        </section>
+
+        <hr style="border-color: rgba(255,255,255,0.05); margin: 50px 0;">
+
+        <section id="store" class="reveal" style="scroll-margin-top: 100px;">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2>The <span class="gradient-text">NovaPM</span> Registry</h2>
+                <p>14,000+ Packages optimized for the Neural Kernel.</p>
+                
+                <div style="max-width: 500px; margin: 20px auto; position: relative;">
+                    <input type="text" placeholder="Search packages (e.g. 'blender', 'rust', 'spotify')..." 
+                           style="width: 100%; padding: 15px 20px; border-radius: 50px; border: 1px solid #333; background: #111; color: white; outline: none;"
+                           onkeyup="filterApps(this.value)">
+                    <span style="position: absolute; right: 20px; top: 15px;">🔍</span>
+                </div>
+            </div>
+
+            <div class="app-grid" id="app-grid-container">
+                <div class="app-card" data-name="vscode code editor microsoft">
+                    <div class="app-icon" style="color: #007acc;">VS</div>
+                    <div>
+                        <h4 style="margin:0;">VS Code (Neural)</h4>
+                        <p style="margin:0; font-size:0.8rem; color:#666;">Microsoft • Dev Tools</p>
+                    </div>
+                </div>
+                
+                <div class="app-card" data-name="blender 3d graphics">
+                    <div class="app-icon" style="color: #e16616;">Bl</div>
+                    <div>
+                        <h4 style="margin:0;">Blender 4.0</h4>
+                        <p style="margin:0; font-size:0.8rem; color:#666;">Foundation • Creative</p>
+                    </div>
+                </div>
+
+                <div class="app-card" data-name="spotify music audio">
+                    <div class="app-icon" style="color: #1db954;">Sp</div>
+                    <div>
+                        <h4 style="margin:0;">Spotify</h4>
+                        <p style="margin:0; font-size:0.8rem; color:#666;">Spotify AB • Media</p>
+                    </div>
+                </div>
+
+                <div class="app-card" data-name="discord chat social">
+                    <div class="app-icon" style="color: #5865F2;">Di</div>
+                    <div>
+                        <h4 style="margin:0;">Discord</h4>
+                        <p style="margin:0; font-size:0.8rem; color:#666;">Discord Inc • Social</p>
+                    </div>
+                </div>
+
+                <div class="app-card" data-name="docker container virtualization">
+                    <div class="app-icon" style="color: #0db7ed;">Do</div>
+                    <div>
+                        <h4 style="margin:0;">Docker Desktop</h4>
+                        <p style="margin:0; font-size:0.8rem; color:#666;">Docker • System</p>
+                    </div>
+                </div>
+
+                <div class="app-card" data-name="obs studio recording streaming">
+                    <div class="app-icon" style="color: white;">OB</div>
+                    <div>
+                        <h4 style="margin:0;">OBS Studio</h4>
+                        <p style="margin:0; font-size:0.8rem; color:#666;">Open Source • Video</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr style="border-color: rgba(255,255,255,0.05); margin: 50px 0;">
+
+        <section id="devs" class="reveal" style="scroll-margin-top: 100px;">
+            <div class="grid-2">
+                <div class="code-block">
+                    <div style="margin-bottom: 10px; color: #888;">// example: access_npu.rs</div>
+                    <span class="keyword">use</span> nova_sdk::prelude::*;<br><br>
+                    <span class="keyword">fn</span> <span class="function">main</span>() {<br>
+                    &nbsp;&nbsp;<span class="comment">// Direct NPU Access</span><br>
+                    &nbsp;&nbsp;<span class="keyword">let</span> tensor = <span class="type">NeuralBuffer</span>::new([<span class="string">1024</span>, <span class="string">1024</span>]);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;<span class="keyword">let</span> result = nova::compute::execute(tensor, <span class="string">"Mode::LowLatency"</span>);<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;println!(<span class="string">"Compute finished in {}ns"</span>, result.time);<br>
+                    }
+                </div>
+                <div>
+                    <h2>Built for <span class="accent-text">Builders.</span></h2>
+                    <p style="color: #aaa; margin-bottom: 20px;">
+                        NovaOS exposes hardware-level APIs directly to userspace securely via Rust. 
+                        You don't need kernel-mode drivers to access the NPU, GPU, or specialized sensors.
+                    </p>
+                    <h3>Supported Languages</h3>
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                        <span style="background: #333; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem;">Rust (Native)</span>
+                        <span style="background: #333; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem;">C++</span>
+                        <span style="background: #333; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem;">Python</span>
+                        <span style="background: #333; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem;">Go</span>
+                    </div>
+                    <br>
+                    <a href="docs.html" class="btn btn-primary">Read API Docs</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-banner reveal">
+            <div class="stat-box">
+                <h3>500k+</h3>
+                <p>Daily Active Nodes</p>
+            </div>
+            <div class="stat-box">
+                <h3>14k</h3>
+                <p>Packages</p>
+            </div>
+            <div class="stat-box">
+                <h3>99.9%</h3>
+                <p>Uptime</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="margin-top: 80px; padding: 40px; text-align: center; border-top: 1px solid #333;">
+        <p style="color: #666;">&copy; 2025 NovaOS Foundation.</p>
+    </footer>
+
+    <script>
+        // 1. SCROLL NAVIGATION
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            
+            // Update Active Button state
+            document.querySelectorAll('.nav-pill').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // 2. APP SEARCH FILTER
+        function filterApps(query) {
+            const term = query.toLowerCase();
+            const cards = document.querySelectorAll('.app-card');
+            
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                if(name.includes(term)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 3. MESH VISUALIZER GENERATOR
+        const meshContainer = document.getElementById('mesh-canvas');
+        const nodeCount = 15;
+        const nodes = [];
+
+        // Generate Nodes
+        for(let i=0; i<nodeCount; i++) {
+            const node = document.createElement('div');
+            node.classList.add('mesh-node');
+            
+            // Random positions
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const size = Math.random() * 10 + 5;
+            
+            node.style.left = x + '%';
+            node.style.top = y + '%';
+            node.style.width = size + 'px';
+            node.style.height = size + 'px';
+            
+            // Add Label
+            node.innerHTML = `<div class="node-label">Node-${100+i}</div>`;
+            
+            meshContainer.appendChild(node);
+            nodes.push({x, y, element: node});
+        }
+
+        // Generate Lines (Connect close nodes)
+        nodes.forEach((nodeA, index) => {
+            // Connect to nearest neighbor
+            let closest = null;
+            let minDist = 1000;
+
+            nodes.forEach((nodeB, indexB) => {
+                if(index === indexB) return;
+                
+                // Simple distance calc
+                const dx = nodeA.x - nodeB.x;
+                const dy = nodeA.y - nodeB.y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+
+                if(dist < 30) { // Connect if reasonably close
+                    const line = document.createElement('div');
+                    line.classList.add('mesh-line');
+                    
+                    // Math to position line between two points
+                    // This is simplified CSS line drawing
+                    const width = dist; // approximate % width
+                    const angle = Math.atan2(nodeB.y - nodeA.y, nodeB.x - nodeA.x) * 180 / Math.PI;
+                    
+                    // Styling logic requires pixels usually, so we use percentage approximation
+                    // Since this is a lightweight visualizer, we just draw lines from center
+                }
+            });
+        });
+
+        // 4. ANIMATE NODES (Floating effect)
+        setInterval(() => {
+            nodes.forEach(node => {
+                const moveX = (Math.random() - 0.5) * 2; // Move slightly -1% to +1%
+                const moveY = (Math.random() - 0.5) * 2;
+                
+                let newX = node.x + moveX;
+                let newY = node.y + moveY;
+
+                // Keep inside bounds
+                if(newX < 0) newX = 0; if(newX > 100) newX = 100;
+                if(newY < 0) newY = 0; if(newY > 100) newY = 100;
+
+                node.x = newX;
+                node.y = newY;
+                node.element.style.left = newX + '%';
+                node.element.style.top = newY + '%';
+            });
+        }, 2000);
+
+        // 5. REVEAL ON SCROLL (Copy from main script)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
