@@ -739,6 +739,83 @@
         </div>
     </section>
 
+    <section class="section-padding container reveal">
+        <div class="text-center" style="margin-bottom: 50px;">
+            <h2>Voices from the <span class="gradient-text">Mesh.</span></h2>
+            <p class="sub-heading">See what early adopters are building on NovaOS.</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testi-card" onclick="openTestimonial(1)">
+                <div class="testi-header">
+                    <img class="testi-avatar" src="images/participant1head.jpg" alt="Elena">
+                    <div>
+                        <div class="testi-name">Glen Napoles</div>
+                        <div class="testi-role">Head Teacher</div>
+                    </div>
+                </div>
+                <div class="testi-quote">
+                    "As a head teacher, I’ve seen many systems come and go — but NovaOS stands out. Its speed, simplicity, and classroom-ready features make it a strong candidate for Osias High School."
+                </div>
+                <div class="read-more">Read full story ↗</div>
+            </div>
+
+            <div class="testi-card" onclick="openTestimonial(2)">
+                <div class="testi-header">
+                    <img class="testi-avatar" src="images/participant2head.jpg" alt="Marcus">
+                    <div>
+                        <div class="testi-name">Marcus Y.</div>
+                        <div class="testi-role">UI Designer</div>
+                    </div>
+                </div>
+                <div class="testi-quote">
+                    "Finally, an OS that understands visual hierarchy. The Glass UI is distinct and..."
+                </div>
+                <div class="read-more">Read full story ↗</div>
+            </div>
+
+            <div class="testi-card" onclick="openTestimonial(3)">
+                <div class="testi-header">
+                    <img class="testi-avatar" src="images/participant3head.jpg" alt="Aris">
+                    <div>
+                        <div class="testi-name">Dr. Aris</div>
+                        <div class="testi-role">Cybersec Researcher</div>
+                    </div>
+                </div>
+                <div class="testi-quote">
+                    "I tried to penetrate the microkernel for 3 days. The isolation logic is..."
+                </div>
+                <div class="read-more">Read full story ↗</div>
+            </div>
+        </div>
+    </section>
+
+<div id="testi-modal" class="testi-overlay" onclick="closeTestimonial(event)">
+        <div class="testi-modal-box glass-morphism">
+            <button class="close-testi" onclick="closeTestimonial(event)">✕</button>
+            
+            <div class="tm-layout">
+                <div class="tm-image-col">
+                    <img id="tm-image" class="tm-portrait" src="https://picsum.photos/200/300?grayscale" alt="User Portrait">
+                </div>
+
+                <div class="tm-text-col">
+                    <h4 id="tm-headline" class="tm-headline">Headline goes here</h4>
+                    
+                    <div class="tm-person-info">
+                        <h3 id="tm-name">Name Placeholder</h3>
+                        <p id="tm-role" class="tm-role">Role Placeholder</p>
+                    </div>
+                    
+                    <hr class="tm-divider">
+                    
+                    <div id="tm-body" class="tm-body">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section id="faq" class="section-padding container">
         <div class="text-center reveal">
             <h2>Frequently Asked <span class="gradient-text">Questions</span></h2>

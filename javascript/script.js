@@ -869,3 +869,63 @@ function startHardwareScan() {
     }, 2000);
 }
 
+/* --- TESTIMONIALS LOGIC (PORTRAIT + ROBUST CLOSE) --- */
+const testimonialsDB = {
+    1: {
+        headline: "Head Teacher at Osias High School tries NovaOS",
+        name: "Glen Napoles",
+        role: "Head Teacher",
+        imageSrc: "images/participant1.jpeg",
+        text: `<p>"I tried NovaOS expecting just another simple system, but it surprised me. As a head teacher at Osias High School, I immediately noticed how fast and smooth it runs, even on older computers.</p>
+                <br>
+                <p>The interface is clean, the performance is steady, and everything feels built for real classroom use. It’s practical, reliable, and exactly the kind of OS our school can benefit from."</p>`
+    },
+    2: {
+        headline: "Lead Designer at Figma explores the Glass UI",
+        name: "Marcus Yuen",
+        role: "UI/UX Specialist",
+        imageSrc: "https://picsum.photos/id/91/220/320",
+        text: `<p>"Operating Systems have been stagnant in design for a decade. NovaOS changes that. Finally, an OS that understands visual hierarchy without sacrificing utility.</p>
+               <br>
+               <p>The Glass UI is distinct—it's not just a blur effect; it's a functional layer that helps me separate my active workspace from background tasks. The 'Zen Mode' alone is worth the switch."</p>`
+    },
+    3: {
+        headline: "Cybersec Researcher at MIT attempts kernel breach",
+        name: "Dr. Aris Thorne",
+        role: "Security Analyst",
+        imageSrc: "https://picsum.photos/id/103/220/320",
+        text: `<p>"I treat every new OS with extreme skepticism. I tried to penetrate the NovaOS microkernel for 3 days using standard injection vectors.</p>
+               <br>
+               <p>The isolation logic is solid. Because drivers run in userspace, even if I crash the network stack, I can't touch the kernel memory. This is mathematically the most secure architecture available for consumer PCs right now."</p>`
+    }
+};
+
+function openTestimonial(id) {
+    const data = testimonialsDB[id];
+    if(!data) return;
+
+    // Populate Modal with new data structure
+    document.getElementById('tm-image').src = data.imageSrc;
+    document.getElementById('tm-headline').innerText = data.headline;
+    document.getElementById('tm-name').innerText = data.name;
+    document.getElementById('tm-role').innerText = data.role;
+    document.getElementById('tm-body').innerHTML = data.text;
+
+    // Show Modal
+    const modal = document.getElementById('testi-modal');
+    modal.classList.add('active');
+}
+
+function closeTestimonial(e) {
+    const modal = document.getElementById('testi-modal');
+    
+    // 1. Check if we clicked the dark overlay background
+    if (e.target.classList.contains('testi-overlay')) {
+        modal.classList.remove('active');
+    }
+    
+    // 2. Check if we clicked the X button (or the icon inside it)
+    if (e.target.closest('.close-testi')) {
+        modal.classList.remove('active');
+    }
+}
