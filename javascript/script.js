@@ -603,28 +603,20 @@ function denySpying(element) {
     }, 400);
 }
 
-/* --- MOBILE MENU TOGGLE --- */
-const mobileBtn = document.querySelector('.mobile-menu-icon');
-const navLinks = document.querySelector('.nav-links');
-
-if(mobileBtn) {
-    mobileBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        
-        // Toggle icon between ☰ and ✕
-        if(navLinks.classList.contains('active')) {
-            mobileBtn.innerText = '✕';
-        } else {
-            mobileBtn.innerText = '☰';
-        }
-    });
+/* --- MOBILE MENU LOGIC --- */
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
 }
 
-// Close menu when a link is clicked
+// Optional: Close menu when a link is clicked
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        mobileBtn.innerText = '☰';
+        const navLinks = document.querySelector('.nav-links');
+        // Only close if we are on mobile
+        if (window.innerWidth <= 768) {
+            navLinks.classList.remove('active');
+        }
     });
 });
 
