@@ -1,4 +1,48 @@
-/* --- style.css --- */
+/* --- LOCAL FONTS SETUP --- */
+
+/* 1. INTER (Standard Text) */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/inter-v20-latin/inter-v20-latin-regular.woff2') format('woff2'), /* Modern Browsers */
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./fonts/inter-v20-latin/inter-v20-latin-500.woff2') format('woff2'),
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./fonts/inter-v20-latin/inter-v20-latin-700.woff2') format('woff2'),
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    src: url('./fonts/inter-v20-latin/inter-v20-latin-900.woff2') format('woff2'),
+}
+
+/* 2. JETBRAINS MONO (Coding Text) */
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/jetbrains-mono-v24-latin/jetbrains-mono-v24-latin-regular.woff2') format('woff2'),
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./fonts/jetbrains-mono-v24-latin/jetbrains-mono-v24-latin-700.woff2') format('woff2'),
+}
 
 :root {
     /* Color Palette */
@@ -42,7 +86,7 @@ body { background-color: var(--bg-color); color: var(--text-main); font-family: 
 /* UPDATED GRADIENT TEXT */
 .gradient-text {
     background: linear-gradient(90deg, #6366f1 0%, #ec4899 50%, #8b5cf6 100%);
-    background-size: 200% auto;
+    background-size: 50% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradientMove 5s linear infinite;
@@ -1036,7 +1080,7 @@ body.matrix-mode::after {
 
 #globe-container {
     width: 100%;
-    height: 500px;
+    height: 450px;
     background: radial-gradient(circle at center, rgba(20,20,30,0.5) 0%, transparent 70%);
     border-radius: 20px;
     position: relative;

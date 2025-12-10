@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NovaOS is a next-generation operating system built from the ground up in Rust for unparalleled memory safety and zero-latency performance. Featuring a revolutionary neural microkernel architecture and a privacy-first 'Glass' interface, NovaOS eliminates legacy bloat to deliver a computing experience that is 40% faster and mathematically secure. Join the open-source revolution and reclaim your digital sovereignty today.">
+    <meta name="keywords" content="NovaOS, Rust Operating System, Microkernel Architecture, Neural Kernel, Memory Safe OS, Open Source Operating System, Linux Alternative, Secure OS, Privacy Focused, Developer OS, Zero-Copy Drivers, High Performance Computing, Low Latency, No Telemetry, Rust Lang, Kzyube Napoles">
+    <meta name="author" content="Kzyube N. Napoles">
     <title>NovaOS | The Neural Era of Computing</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/novaLogo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -794,6 +796,31 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <div id="verify-modal" class="verify-overlay">
+        <div class="verify-box">
+            <div class="verify-header">
+                <h3>Security Check</h3>
+                <button class="close-modal" onclick="closeVerify()">✕</button>
+            </div>
+            
+            <div class="captcha-container" id="captcha-box" onclick="runVerification()">
+                <div class="captcha-checkbox">
+                    <div id="captcha-spinner" class="c-spinner"></div>
+                    <div id="captcha-checkmark" class="c-check">✓</div>
+                </div>
+                <div class="captcha-text">
+                    <span>Verify you are human</span>
+                    <span class="captcha-branding">Protected by NovaGuard</span>
+                </div>
+            </div>
+
+            <div class="verify-status" id="verify-status">
+                Waiting for verification...
+            </div>
+        </div>
+    </div>
+
+    <script src="javascript/three.min.js"></script>
+    <script src="javascript/script.js"></script>
 </body>
 </html>

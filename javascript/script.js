@@ -454,16 +454,20 @@ function moveSlider(val) {
     }
 }
 
-/* --- 3D GLOBE LOGIC (THREE.JS) --- */
-// We load Three.js dynamically to keep your site fast
-import('https://unpkg.com/three@0.160.0/build/three.module.js').then((THREE) => {
+/* --- 3D GLOBE LOGIC (LOCAL GLOBAL VERSION) --- */
+document.addEventListener('DOMContentLoaded', () => {
     
+    // Check if THREE is loaded
+    if (typeof THREE === 'undefined') {
+        console.error("Three.js not found. Check your javascript/three.min.js path.");
+        return;
+    }
+
     const container = document.getElementById('globe-container');
     if (!container) return;
 
     // 1. Scene Setup
     const scene = new THREE.Scene();
-    // Add some fog for depth
     scene.fog = new THREE.FogExp2(0x000000, 0.03);
 
     const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 1, 1000);
@@ -475,44 +479,39 @@ import('https://unpkg.com/three@0.160.0/build/three.module.js').then((THREE) => 
     renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
 
-    // 2. The Globe Sphere (Wireframe looking)
+    // 2. The Globe Sphere
     const geometry = new THREE.SphereGeometry(5, 64, 64);
-    
-    // Create a cool "tech" material
     const material = new THREE.MeshPhongMaterial({
         color: 0x111111,
         emissive: 0x000000,
         specular: 0x111111,
         shininess: 10,
         transparent: true,
-        opacity: 0.9,
-        wireframe: false 
+        opacity: 0.9
     });
     
     const globe = new THREE.Mesh(geometry, material);
     scene.add(globe);
 
-    // Add a Wireframe Mesh on top for the "Grid" look
-    const wireGeo = new THREE.EdgesGeometry(new THREE.SphereGeometry(5.05, 24, 24)); // Slightly larger
+    // Wireframe Mesh
+    const wireGeo = new THREE.EdgesGeometry(new THREE.SphereGeometry(5.05, 24, 24));
     const wireMat = new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.3 });
     const wireframe = new THREE.LineSegments(wireGeo, wireMat);
     globe.add(wireframe);
 
     // 3. Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Soft white light
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0x6366f1, 2, 50); // Purple/Blue glow from side
+    const pointLight = new THREE.PointLight(0x6366f1, 2, 50);
     pointLight.position.set(10, 10, 10);
     scene.add(pointLight);
 
-    const pointLight2 = new THREE.PointLight(0x22c55e, 2, 50); // Green glow from other side
+    const pointLight2 = new THREE.PointLight(0x22c55e, 2, 50);
     pointLight2.position.set(-10, -5, 5);
     scene.add(pointLight2);
 
-
-    // 4. Add "User Dots" (Pillars on the surface)
-    // Helper function to convert Lat/Lon to 3D Position
+    // 4. Helper function for dots
     function createDot(lat, lon, color = 0x22c55e) {
         const phi = (90 - lat) * (Math.PI / 180);
         const theta = (lon + 180) * (Math.PI / 180);
@@ -522,49 +521,39 @@ import('https://unpkg.com/three@0.160.0/build/three.module.js').then((THREE) => 
         const z = (radius * Math.sin(phi) * Math.sin(theta));
         const y = (radius * Math.cos(phi));
 
-        // Create a small glowing sphere
         const dotGeo = new THREE.SphereGeometry(0.1, 16, 16);
         const dotMat = new THREE.MeshBasicMaterial({ color: color });
         const dot = new THREE.Mesh(dotGeo, dotMat);
-        
         dot.position.set(x, y, z);
         globe.add(dot);
 
-        // Create a "Beam" sticking out
         const beamGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.5, 8);
-        beamGeo.translate(0, 0.25, 0); // Move pivot to bottom
-        beamGeo.rotateX(Math.PI / 2); // Point outward
+        beamGeo.translate(0, 0.25, 0);
+        beamGeo.rotateX(Math.PI / 2);
         const beamMat = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.6 });
         const beam = new THREE.Mesh(beamGeo, beamMat);
         beam.position.set(x, y, z);
-        beam.lookAt(0, 0, 0); // Point to center (which means bottom points to center)
+        beam.lookAt(0, 0, 0);
         globe.add(beam);
     }
 
-    // --- ADDING USERS (Lat, Lon) ---
-    createDot(37.77, -122.41); // San Francisco
-    createDot(40.71, -74.00);  // New York
+    // Add Cities
+    createDot(37.77, -122.41); // SF
+    createDot(40.71, -74.00);  // NY
     createDot(51.50, -0.12);   // London
     createDot(35.67, 139.65);  // Tokyo
-    createDot(52.52, 13.40);   // Berlin
     createDot(-33.86, 151.20); // Sydney
-    createDot(-23.55, -46.63); // Sao Paulo
-    createDot(28.61, 77.20);   // New Delhi
-    createDot(1.35, 103.81);   // Singapore
-    createDot(55.75, 37.61);   // Moscow
     
-    // Add some random nodes
+    // Random nodes
     for(let i=0; i<20; i++) {
-        const lat = (Math.random() - 0.5) * 160;
-        const lon = (Math.random() - 0.5) * 360;
-        createDot(lat, lon, 0x444444); // Dimmer dots for "inactive" nodes
+        createDot((Math.random() - 0.5) * 160, (Math.random() - 0.5) * 360, 0x444444);
     }
 
-    // 5. Interaction (Rotation)
+    // 5. Animation
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
 
-    container.addEventListener('mousedown', (e) => { isDragging = true; });
+    container.addEventListener('mousedown', () => { isDragging = true; });
     document.addEventListener('mouseup', () => { isDragging = false; });
     document.addEventListener('mousemove', (e) => {
         if (isDragging) {
@@ -572,35 +561,28 @@ import('https://unpkg.com/three@0.160.0/build/three.module.js').then((THREE) => 
                 x: e.offsetX - previousMousePosition.x,
                 y: e.offsetY - previousMousePosition.y
             };
-
-            const rotateSpeed = 0.005;
-            globe.rotation.y += deltaMove.x * rotateSpeed;
-            globe.rotation.x += deltaMove.y * rotateSpeed;
+            globe.rotation.y += deltaMove.x * 0.005;
+            globe.rotation.x += deltaMove.y * 0.005;
         }
         previousMousePosition = { x: e.offsetX, y: e.offsetY };
     });
 
-    // 6. Animation Loop
     function animate() {
         requestAnimationFrame(animate);
-        
-        // Auto Rotate slightly
-        if (!isDragging) {
-            globe.rotation.y += 0.002;
-        }
-
+        if (!isDragging) globe.rotation.y += 0.002;
         renderer.render(scene, camera);
     }
     animate();
 
-    // Handle Window Resize
+    // Resize Handle
     window.addEventListener('resize', () => {
-        camera.aspect = container.clientWidth / container.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(container.clientWidth, container.clientHeight);
+        if(container && camera && renderer) {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
     });
-
-}).catch(err => console.error("Failed to load 3D Globe:", err));
+});
 
 /* --- PRIVACY TOGGLE LOGIC --- */
 function denySpying(element) {
@@ -886,3 +868,4 @@ function startHardwareScan() {
 
     }, 2000);
 }
+
