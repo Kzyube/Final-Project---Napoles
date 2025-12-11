@@ -121,17 +121,19 @@
 </head>
 <body>
 
-    <nav id="navbar">
+<nav id="navbar">
         <div class="container nav-content">
             <a href="index.html" class="logo">Nova<span class="accent-text">OS</span></a>
             <div class="nav-links">
-                <a href="index.html" class="active">Home</a>                
-                <a href="ecosystem.html">Ecosystem</a>
+                <a href="index.html">Home</a>                
+                <a href="about.html" class="active">About</a> <a href="ecosystem.html">Ecosystem</a>
+                <a href="#" onclick="toggleLogin()">Login</a>
                 <a href="docs.html" class="btn btn-secondary">Docs</a>
-                <a href="index.html#download" class="btn btn-primary">Get Beta</a>
+                <a href="javascript:void(0)" class="btn btn-primary" onclick="startDownloadProcess()">Download NovaOS</a>
             </div>
             <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
-        </nav>
+        </div>
+    </nav>
 
     <header class="container about-hero reveal">
         <h1 style="font-size: 3.5rem; margin-bottom: 10px;">The <span class="gradient-text">Creator.</span></h1>
