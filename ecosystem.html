@@ -178,17 +178,20 @@
 </head>
 <body>
 
-    <nav id="navbar">
-        <div class="container nav-content">
-            <a href="index.html" class="logo">Nova<span class="accent-text">OS</span></a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="#" class="active">Ecosystem</a>
-                <a href="docs.html" class="btn btn-secondary">Docs</a>
-                <a href="index.html#download" class="btn btn-primary">Get Beta</a>
-            </div>
+<nav id="navbar">
+    <div class="container nav-content">
+        <a href="index.html" class="logo">Nova<span class="accent-text">OS</span></a>
+        
+        <div class="nav-links">
+            <a href="about.html">About</a>
+            <a href="ecosystem.html" class="active">Ecosystem</a> <a href="#" onclick="toggleLogin()">Login</a>
+            <a href="docs.html" class="btn btn-secondary">Docs</a>
+            <a href="javascript:void(0)" class="btn btn-primary" onclick="startDownloadProcess()">Download NovaOS</a>
         </div>
-    </nav>
+        
+        <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
+    </div>
+</nav>
 
     <header class="container eco-hero reveal">
         <h1>The Connected <span class="gradient-text">Universe</span></h1>
@@ -461,5 +464,7 @@
         });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
+    <script src="script.js"></script>
+</body>
 </body>
 </html>

@@ -130,7 +130,7 @@
                 <a href="docs.html" class="btn btn-secondary">Docs</a>
                 <a href="index.html#download" class="btn btn-primary">Get Beta</a>
             </div>
-            <div class="mobile-menu-icon">☰</div>
+            <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
         </nav>
 
     <header class="container about-hero reveal">
@@ -254,5 +254,6 @@
         });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
+    <script src="script.js"></script>
 </body>
 </html>

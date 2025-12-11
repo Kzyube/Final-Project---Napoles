@@ -35,16 +35,20 @@
 </head>
 <body>
 
-    <nav>
-        <div class="container nav-content">
-            <a href="index.html" class="logo">Nova<span class="accent-text">OS</span></a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="#" class="active" style="color:white;">Documentation</a>
-                <a href="#" class="btn btn-primary">Download</a>
-            </div>
+<nav id="navbar">
+    <div class="container nav-content">
+        <a href="index.html" class="logo">Nova<span class="accent-text">OS</span></a>
+        
+        <div class="nav-links">
+            <a href="about.html">About</a>
+            <a href="ecosystem.html">Ecosystem</a>
+            <a href="#" onclick="toggleLogin()">Login</a>
+            <a href="docs.html" class="btn btn-secondary active">Docs</a> <a href="javascript:void(0)" class="btn btn-primary" onclick="startDownloadProcess()">Download NovaOS</a>
         </div>
-    </nav>
+        
+        <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
+    </div>
+</nav>
 
     <div class="container docs-layout">
         <aside class="sidebar">
@@ -87,6 +91,8 @@
             </div>
         </main>
     </div>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
