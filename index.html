@@ -762,28 +762,28 @@
 
             <div class="testi-card" onclick="openTestimonial(2)">
                 <div class="testi-header">
-                    <img class="testi-avatar" src="images/participant2head.jpg" alt="Marcus">
+                    <img class="testi-avatar" src="images/participant2.png" alt="Marcus">
                     <div>
-                        <div class="testi-name">Marcus Y.</div>
-                        <div class="testi-role">UI Designer</div>
+                        <div class="testi-name">Mark Zuckerberg</div>
+                        <div class="testi-role">Facebook/Meta</div>
                     </div>
                 </div>
                 <div class="testi-quote">
-                    "Finally, an OS that understands visual hierarchy. The Glass UI is distinct and..."
+                    "Nindot kaayo ang NovaOS uy! Super safe ug reliable. Efficient pud siya..."
                 </div>
                 <div class="read-more">Read full story ↗</div>
             </div>
 
             <div class="testi-card" onclick="openTestimonial(3)">
                 <div class="testi-header">
-                    <img class="testi-avatar" src="images/participant3head.jpg" alt="Aris">
+                    <img class="testi-avatar" src="images/participant3.jpg" alt="Aris">
                     <div>
-                        <div class="testi-name">Dr. Aris</div>
-                        <div class="testi-role">Cybersec Researcher</div>
+                        <div class="testi-name">Martin Romualdez</div>
+                        <div class="testi-role">House Speaker</div>
                     </div>
                 </div>
                 <div class="testi-quote">
-                    "I tried to penetrate the microkernel for 3 days. The isolation logic is..."
+                    "Ang ganda ng NovaOS. Gamitin ito upang maiwasan ang flood control..."
                 </div>
                 <div class="read-more">Read full story ↗</div>
             </div>
@@ -829,6 +829,10 @@
                 <div class="faq-question">Can I run Steam games? <span class="toggle">+</span></div>
                 <div class="faq-answer">Yes! We use a translation layer similar to Proton, but baked into the kernel. Performance is often 10-15% higher than Windows.</div>
             </div>
+            <div class="faq-item">
+                <div class="faq-question">Is it 100% free? <span class="toggle">+</span></div>
+                <div class="faq-answer">Yes! NovaOS is open-source, meaning, it is 100% free!</div>
+            </div>
         </div>
     </section>
 
@@ -851,8 +855,9 @@
             <div class="footer-col">
                 <h4>Newsletter</h4>
                 <div class="newsletter-form">
-                    <input type="email" placeholder="email@address.com">
-                    <button class="btn btn-primary">Join</button>
+                    <input type="email" id="user-email" placeholder="email@address.com">
+        
+                    <button class="btn btn-primary" onclick="fakeSubmit()">Join</button>
                 </div>
             </div>
         </div>
@@ -872,6 +877,10 @@
             <p>SYSTEM OVERRIDE: KZYUBE PROTOCOL INITIATED</p>
         </div>
     </div>
+
+    <audio id="hacker-music" loop>
+        <source src="audio/bgmusic.mp3" type="audio/mpeg">
+    </audio>
 
     <script src="javascript/three.min.js"></script>
     <script src="javascript/script.js"></script>

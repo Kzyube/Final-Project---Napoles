@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NovaOS is a next-generation operating system built from the ground up in Rust for unparalleled memory safety and zero-latency performance. Featuring a revolutionary neural microkernel architecture and a privacy-first 'Glass' interface, NovaOS eliminates legacy bloat to deliver a computing experience that is 40% faster and mathematically secure. Join the open-source revolution and reclaim your digital sovereignty today.">
+    <meta name="keywords" content="NovaOS, Rust Operating System, Microkernel Architecture, Neural Kernel, Memory Safe OS, Open Source Operating System, Linux Alternative, Secure OS, Privacy Focused, Developer OS, Zero-Copy Drivers, High Performance Computing, Low Latency, No Telemetry, Rust Lang, Kzyube Napoles">
+    <meta name="author" content="Kzyube N. Napoles">
     <title>Docs | NovaOS</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/novaLogo.png">
@@ -44,7 +47,7 @@
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="ecosystem.html">Ecosystem</a>
-            <a href="javascript:void(0)" class="btn btn-primary" onclick="startDownloadProcess()">Download NovaOS</a>
+            <a href="index.html#download" class="btn btn-primary" onclick="startDownloadProcess()">Download NovaOS</a>
         </div>
         
         <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
@@ -91,6 +94,14 @@
                 <strong>Note:</strong> NovaOS defaults to read-only root filesystems for security. To install packages, use the <code>nova-pkg</code> container manager.
             </div>
         </main>
+    </div>
+
+    <audio id="hacker-music" loop>
+        <source src="audio/bgmusic.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="hacker-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:black; color:#0f0; z-index:99999; align-items:center; justify-content:center; font-family:'Courier New', monospace; font-size:2rem; font-weight:bold;">
+        SYSTEM COMPROMISED...
     </div>
 
     <script src="javascript/script.js"></script>

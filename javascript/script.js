@@ -368,27 +368,44 @@ document.addEventListener('keydown', (e) => {
 });
 
 function activateHackerMode() {
-    // 1. Show the Overlay
+    // 1. Show the Overlay (Existing)
     const overlay = document.getElementById('hacker-overlay');
     overlay.style.display = 'flex';
 
-    // 2. Play a sound (Optional - this is a simple system beep sound effect via code)
-    // You can remove this block if you don't want sound
+    // 2. Play the Beep (KEEPING YOUR ORIGINAL SOUND)
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const oscillator = audioCtx.createOscillator();
     oscillator.type = 'square';
-    oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // Hz
+    oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); 
     oscillator.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.1);
     oscillator.connect(audioCtx.destination);
     oscillator.start();
-    oscillator.stop(audioCtx.currentTime + 0.3);
+    oscillator.stop(audioCtx.currentTime + 0.3); // Beep stops after 0.3 seconds
 
-    // 3. Wait 2 seconds, then remove overlay and apply theme
+    // 3. Play Background Music AFTER Beep (NEW)
+    setTimeout(() => {
+        const music = document.getElementById('hacker-music');
+        // Check if we are about to turn ON the mode (currently off)
+        const isTurningOn = !document.body.classList.contains('matrix-mode');
+
+        if (music) {
+            if (isTurningOn) {
+                // If turning ON: Play Music
+                music.currentTime = 0;
+                music.play().catch(e => console.log("Audio blocked:", e));
+            } else {
+                // If turning OFF: Stop Music
+                music.pause();
+                music.currentTime = 0;
+            }
+        }
+    }, 300); // Wait 300ms (exactly when the beep stops)
+
+    // 4. Wait 2 seconds, then remove overlay and apply theme (Existing)
     setTimeout(() => {
         overlay.style.display = 'none';
         document.body.classList.toggle('matrix-mode');
         
-        // Change text in the hero section to match
         const heroTitle = document.querySelector('.hero-title');
         if(document.body.classList.contains('matrix-mode')) {
             if(heroTitle) heroTitle.innerHTML = "SYSTEM<br> <span class='gradient-text'>COMPROMISED.</span>";
@@ -873,19 +890,19 @@ const testimonialsDB = {
                 <p>The interface is clean, the performance is steady, and everything feels built for real classroom use. It’s practical, reliable, and exactly the kind of OS our school can benefit from."</p>`
     },
     2: {
-        headline: "Lead Designer at Figma explores the Glass UI",
-        name: "Marcus Yuen",
-        role: "UI/UX Specialist",
-        imageSrc: "https://picsum.photos/id/91/220/320",
+        headline: "Facebook CEO explores NovaOS",
+        name: "Mark Zuckerberg",
+        role: "Facebook/Meta",
+        imageSrc: "images/participant2edited.jpg",
         text: `<p>"Operating Systems have been stagnant in design for a decade. NovaOS changes that. Finally, an OS that understands visual hierarchy without sacrificing utility.</p>
                <br>
                <p>The Glass UI is distinct—it's not just a blur effect; it's a functional layer that helps me separate my active workspace from background tasks. The 'Zen Mode' alone is worth the switch."</p>`
     },
     3: {
-        headline: "Cybersec Researcher at MIT attempts kernel breach",
-        name: "Dr. Aris Thorne",
-        role: "Security Analyst",
-        imageSrc: "https://picsum.photos/id/103/220/320",
+        headline: "House Speaker tries NovaOS!",
+        name: "Martin Romualdez",
+        role: "House Speaker",
+        imageSrc: "images/participant3edited.png",
         text: `<p>"I treat every new OS with extreme skepticism. I tried to penetrate the NovaOS microkernel for 3 days using standard injection vectors.</p>
                <br>
                <p>The isolation logic is solid. Because drivers run in userspace, even if I crash the network stack, I can't touch the kernel memory. This is mathematically the most secure architecture available for consumer PCs right now."</p>`
@@ -921,3 +938,24 @@ function closeTestimonial(e) {
         modal.classList.remove('active');
     }
 }
+
+// JOIN NEWSLETTER
+function fakeSubmit() {
+        // 1. Find the input element
+        const emailInput = document.getElementById('user-email');
+        
+        // 2. Get the text inside it
+        const emailValue = emailInput.value;
+
+        // 3. Check if it's empty
+        if (emailValue.trim() === "") {
+            alert("Please enter an email address first.");
+            return; // Stop here
+        }
+
+        // 4. Show the success pop-up
+        alert("Email Received!");
+
+        // 5. Clear the input box to make it look like it was sent
+        emailInput.value = "";
+    }
