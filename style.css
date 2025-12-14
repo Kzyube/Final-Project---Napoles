@@ -1889,3 +1889,23 @@ body.matrix-mode::after {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* --- CUSTOM SCROLLBAR --- */
+/* The width of the scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    background: #000; /* Track color */
+}
+
+/* The moving part (thumb) */
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hover effect on the thumb */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary); /* Turns purple/blue on hover */
+    box-shadow: 0 0 10px var(--accent-primary); /* Glow effect */
+}
+
